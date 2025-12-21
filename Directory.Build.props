@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-		<VersionMajor>3</VersionMajor>
+		<VersionMajor>4</VersionMajor>
 		<VersionMinor>0</VersionMinor>
 		<VersionPatch>0</VersionPatch>
 		<VersionPrefix>$(VersionMajor).$(VersionMinor).$(VersionPatch)</VersionPrefix>
@@ -8,11 +8,12 @@
 	</PropertyGroup>
 
   <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
     <LangVersion>latest</LangVersion>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/WeihanLi/DbTool</RepositoryUrl>
-
     <Authors>DbTool Contributors</Authors>
-    <Copyright>Copyright 2017-2023 (c) WeihanLi</Copyright>
+    <Copyright>Copyright 2017-2026 (c) WeihanLi</Copyright>
   </PropertyGroup>
 </Project>

@@ -2,13 +2,11 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <UseWPF>true</UseWPF>
     <RootNamespace>DbTool</RootNamespace>
     <AssemblyName>DbTool</AssemblyName>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <ApplicationIcon>DbTool.ico</ApplicationIcon>
-    <DbToolPackageVersion>3.0.0</DbToolPackageVersion>
+    <DbToolPackageVersion>4.0.0</DbToolPackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,8 +17,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="WeihanLi.Extensions.Localization.Json" Version="2.0.0" />
-    <PackageReference Include="WeihanLi.Common" Version="1.0.60" />
-    <PackageReference Include="WeihanLi.Npoi" Version="2.4.2" />
+    <PackageReference Include="WeihanLi.Common" Version="1.0.84" />
+    <PackageReference Include="WeihanLi.Npoi" Version="3.2.0" />
     <PackageReference Include="DbTool.Core" Version="$(DbToolPackageVersion)" />
     <PackageReference Include="DbTool.DbProvider.MySql" Version="$(DbToolPackageVersion)" />
     <PackageReference Include="DbTool.DbProvider.PostgreSql" Version="$(DbToolPackageVersion)" />
