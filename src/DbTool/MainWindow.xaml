@@ -10,7 +10,7 @@
         Title="DbTool" Height="450" Width="800" FontSize="14">
     <Window.Resources>
         <converter:FullTableNameConverter x:Key="fullTableNameConverter" />
-        <converter:BoolToVisiblityConverter x:Key="boolToVisibilityConverter"/>
+        <converter:BoolToVisibilityConverter x:Key="boolToVisibilityConverter"/>
     </Window.Resources>
     <Grid>
         <TabControl Background="#EEE">

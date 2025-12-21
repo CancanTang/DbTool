@@ -8,18 +8,12 @@ using WeihanLi.Common;
 
 namespace DbTool.Localization;
 
-public class LocalizerExtension : MarkupExtension
+public class LocalizerExtension(string key) : MarkupExtension
 {
-    private readonly IStringLocalizer _localizer;
-    public string Key { get; }
-
-    public LocalizerExtension(string key)
-    {
-        Key = key;
-        _localizer = DependencyResolver.
-            ResolveRequiredService<IStringLocalizerFactory>()
-            .Create(typeof(MainWindow));
-    }
+    private readonly IStringLocalizer _localizer = DependencyResolver.
+        ResolveRequiredService<IStringLocalizerFactory>()
+        .Create(typeof(MainWindow));
+    public string Key { get; } = key;
 
     public override object ProvideValue(IServiceProvider serviceProvider)
     {

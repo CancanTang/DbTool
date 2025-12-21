@@ -9,23 +9,20 @@ namespace DbTool.ViewModels;
 
 public class CheckableTableEntity : TableEntity, INotifyPropertyChanged
 {
-    private bool _checked;
-
     public bool Checked
     {
-        get => _checked;
+        get;
         set
         {
-            _checked = value;
+            field = value;
             NotifyPropertyChanged();
         }
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    public void NotifyPropertyChanged([CallerMemberName] string? propertyName = null)
+    private void NotifyPropertyChanged([CallerMemberName] string? propertyName = null)
     {
-        if (PropertyChanged != null)
-            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
