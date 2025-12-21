@@ -163,7 +163,7 @@ public partial class MainWindow
                 Parallel.ForEach(CheckedTables.SelectedItems.Cast<CheckableTableEntity>(), table =>
                 {
                     var modelCode = codeGenerator.GenerateModelCode(table, options, _dbProviderFactory.GetDbProvider(_dbHelper?.DbType ?? _settings.DefaultDbType));
-                    var path = Path.Combine(dir, $"{ _modelNameConverter.ConvertTableToModel(table.TableName ?? "")}{codeGenerator.FileExtension}");
+                    var path = Path.Combine(dir, $"{_modelNameConverter.ConvertTableToModel(table.TableName ?? "")}{codeGenerator.FileExtension}");
                     File.WriteAllText(path, modelCode, Encoding.UTF8);
                 });
                 // open dir
@@ -173,7 +173,7 @@ public partial class MainWindow
             {
                 _settings.IsLoad = false;
             }
-            
+
         }
     }
 
@@ -475,7 +475,7 @@ public partial class MainWindow
                         finally
                         {
                             _settings.IsLoad = false;
-                        }                        
+                        }
                     }
                     else
                     {

@@ -149,7 +149,7 @@ public sealed class SettingsViewModel : INotifyPropertyChanged
     public string[] SupportedCultures { get; set; }
     public bool IsLoad
     {
-        get => _isLoad; 
+        get => _isLoad;
         set
         {
             _isLoad = value;
