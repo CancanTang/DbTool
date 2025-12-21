@@ -1,6 +1,5 @@
 <Solution>
   <Folder Name="/src/">
-    <Project Path="src/DbTool.ControlLib/DbTool.ControlLib.csproj" />
     <Project Path="src/DbTool/DbTool.csproj" />
   </Folder>
   <Folder Name="/test/">

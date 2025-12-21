@@ -44,5 +44,6 @@
   "SelectAll": "Select All",
   "NullableReferenceTypes": "Nullable Reference Types",
   "GlobalUsing": "Global Using",
-  "FileScopedNamespace": "File-Scoped Namespace"
+  "FileScopedNamespace": "File-Scoped Namespace",
+  "Loading": "Loading..."
 }

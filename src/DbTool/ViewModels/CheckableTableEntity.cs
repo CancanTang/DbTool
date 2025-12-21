@@ -1,28 +1,14 @@
-﻿// Copyright (c) Weihan Li. All rights reserved.
+// Copyright (c) Weihan Li. All rights reserved.
 // Licensed under the MIT license.
 
+using CommunityToolkit.Mvvm.ComponentModel;
 using DbTool.Core.Entity;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace DbTool.ViewModels;
 
-public class CheckableTableEntity : TableEntity, INotifyPropertyChanged
+[INotifyPropertyChanged]
+public partial class CheckableTableEntity : TableEntity
 {
-    public bool Checked
-    {
-        get;
-        set
-        {
-            field = value;
-            NotifyPropertyChanged();
-        }
-    }
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    private void NotifyPropertyChanged([CallerMemberName] string? propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
+    [ObservableProperty]
+    private bool _checked;
 }

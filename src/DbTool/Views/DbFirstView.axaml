@@ -1,0 +1,167 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:DbTool.Localization"
+             xmlns:conv="clr-namespace:DbTool.Converters"
+             x:Class="DbTool.Views.DbFirstView">
+  <UserControl.Resources>
+    <conv:FullTableNameConverter x:Key="FullTableNameConverter" />
+  </UserControl.Resources>
+  <Grid RowDefinitions="Auto,Auto,Auto,*"
+        Margin="12">
+    <Grid ColumnDefinitions="Auto,*,Auto,Auto"
+          ColumnSpacing="8">
+      <TextBlock VerticalAlignment="Center"
+                 Text="{loc:Localizer DbConnectionString}" />
+      <TextBox Grid.Column="1"
+               Text="{Binding ConnectionString, Mode=TwoWay}"
+               MinWidth="300" />
+      <StackPanel Grid.Column="2"
+                  Orientation="Horizontal"
+                  Spacing="8"
+                  VerticalAlignment="Center">
+        <TextBlock VerticalAlignment="Center"
+                   Text="{loc:Localizer DbType}" />
+        <ComboBox Width="150"
+                  ItemsSource="{Binding SupportedDbTypes}"
+                  SelectedItem="{Binding SelectedDbType}" />
+      </StackPanel>
+      <Button Grid.Column="3"
+              Command="{Binding ConnectCommand}"
+              Content="{loc:Localizer Connect}"
+              Width="120" />
+    </Grid>
+
+    <Grid Grid.Row="1"
+          Margin="0,12,0,0"
+          ColumnDefinitions="Auto,*,Auto,*,Auto,*"
+          ColumnSpacing="8">
+      <TextBlock VerticalAlignment="Center"
+                 Text="{loc:Localizer Namespace}" />
+      <TextBox Grid.Column="1"
+               Text="{Binding ModelNamespace, Mode=TwoWay}" />
+      <TextBlock Grid.Column="2"
+                 VerticalAlignment="Center"
+                 Text="{loc:Localizer Prefix}" />
+      <TextBox Grid.Column="3"
+               Text="{Binding Prefix, Mode=TwoWay}" />
+      <TextBlock Grid.Column="4"
+                 VerticalAlignment="Center"
+                 Text="{loc:Localizer Suffix}" />
+      <TextBox Grid.Column="5"
+               Text="{Binding Suffix, Mode=TwoWay}" />
+    </Grid>
+
+    <WrapPanel Grid.Row="2"
+               Margin="0,12,0,0"
+               ItemSpacing="12">
+      <CheckBox Content="{loc:Localizer GeneratePrivateFields}"
+                IsChecked="{Binding GeneratePrivateFields}" />
+      <CheckBox Content="{loc:Localizer GenerateDataAnnotation}"
+                IsChecked="{Binding GenerateDataAnnotation}" />
+      <CheckBox Content="{loc:Localizer GlobalUsing}"
+                IsChecked="{Binding GlobalUsingEnabled}" />
+      <CheckBox Content="{loc:Localizer NullableReferenceTypes}"
+                IsChecked="{Binding NullableReferenceTypesEnabled}" />
+      <CheckBox Content="{loc:Localizer FileScopedNamespace}"
+                IsChecked="{Binding FileScopedNamespaceEnabled}" />
+      <CheckBox Content="{loc:Localizer GenerateDbDesc}"
+                IsChecked="{Binding GenerateDbDescription}" />
+    </WrapPanel>
+
+    <Grid Grid.Row="3"
+          Margin="0,12,0,0"
+          RowDefinitions="Auto,*">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal"
+                    Spacing="8">
+          <TextBlock VerticalAlignment="Center"
+                     FontWeight="Bold"
+                     Text="{loc:Localizer ChooseTables}" />
+          <Button Command="{Binding SelectAllCommand}"
+                  Content="{loc:Localizer SelectAll}" />
+        </StackPanel>
+        <StackPanel Grid.Column="1"
+                    Orientation="Horizontal"
+                    Spacing="8">
+          <ItemsControl ItemsSource="{Binding ModelGenerators}">
+            <ItemsControl.ItemsPanel>
+              <ItemsPanelTemplate>
+                <WrapPanel ItemSpacing="8" />
+              </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <Button Content="{Binding Label}"
+                        Command="{Binding DataContext.ExportModelCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                        CommandParameter="{Binding Service}" />
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+          <ItemsControl ItemsSource="{Binding DbDocExporters}">
+            <ItemsControl.ItemsPanel>
+              <ItemsPanelTemplate>
+                <WrapPanel ItemSpacing="8" />
+              </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <Button Content="{Binding Label}"
+                        Command="{Binding DataContext.ExportDocumentationCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                        CommandParameter="{Binding Service}" />
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+        </StackPanel>
+      </Grid>
+      <Grid Grid.Row="1"
+            ColumnDefinitions="3*,2*"
+            ColumnSpacing="12">
+        <ListBox ItemsSource="{Binding Tables}"
+                 SelectedItem="{Binding SelectedTable}">
+          <ListBox.ItemTemplate>
+            <DataTemplate>
+              <CheckBox IsChecked="{Binding Checked, Mode=TwoWay}">
+                <TextBlock Text="{Binding Converter={StaticResource FullTableNameConverter}}" />
+              </CheckBox>
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+          </Grid.RowDefinitions>
+          <TextBlock FontSize="16"
+                     FontWeight="Bold"
+                     Text="{Binding SelectedTable.TableName, FallbackValue='-'}" />
+          <DataGrid Grid.Row="1"
+                    ItemsSource="{Binding Columns}"
+                    AutoGenerateColumns="False"
+                    HeadersVisibility="Column">
+            <DataGrid.Columns>
+              <DataGridTextColumn Header="{loc:Localizer ColumnName}"
+                                  Binding="{Binding ColumnName}" />
+              <DataGridTextColumn Header="{loc:Localizer ColumnDescription}"
+                                  Binding="{Binding ColumnDescription}" />
+              <DataGridTextColumn Header="{loc:Localizer DataType}"
+                                  Binding="{Binding DataType}" />
+            </DataGrid.Columns>
+          </DataGrid>
+        </Grid>
+      </Grid>
+      <Border Grid.RowSpan="2"
+              Background="#66000000"
+              IsVisible="{Binding IsBusy}">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Foreground="White"
+                   FontSize="16"
+                   Text="{loc:Localizer Loading}" />
+      </Border>
+    </Grid>
+  </Grid>
+</UserControl>

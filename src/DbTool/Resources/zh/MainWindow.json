@@ -44,5 +44,6 @@
   "SelectAll": "全选",
   "NullableReferenceTypes": "可空引用类型",
   "GlobalUsing": "全局引用",
-  "FileScopedNamespace": "文件范围命名空间"
+  "FileScopedNamespace": "文件范围命名空间",
+  "Loading": "加载中..."
 }
