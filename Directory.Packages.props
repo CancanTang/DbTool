@@ -18,9 +18,9 @@
     <PackageVersion Include="Irihi.Ursa.Themes.Semi" Version="1.14.0" />
     <PackageVersion Include="Semi.Avalonia" Version="11.3.7.1" />
     <PackageVersion Include="System.Configuration.ConfigurationManager" Version="9.0.4" />
-    <PackageVersion Include="WeihanLi.Common" Version="1.0.84" />
+    <PackageVersion Include="WeihanLi.Common" Version="1.0.86" />
     <PackageVersion Include="WeihanLi.Extensions.Localization.Json" Version="2.0.0" />
-    <PackageVersion Include="WeihanLi.Npoi" Version="3.2.0" />
+    <PackageVersion Include="WeihanLi.Npoi" Version="3.3.0" />
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="coverlet.collector" Version="6.0.4" />
