@@ -1,50 +1,37 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
     <RootNamespace>DbTool</RootNamespace>
     <AssemblyName>DbTool</AssemblyName>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <ApplicationIcon>DbTool.ico</ApplicationIcon>
-    <DbToolPackageVersion>4.0.0</DbToolPackageVersion>
-    <AvaloniaUseCompiledBindings>true</AvaloniaUseCompiledBindings>
-    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <DbToolPackageVersion>3.0.0</DbToolPackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="out\**" />
     <EmbeddedResource Remove="out\**" />
     <None Remove="out\**" />
-    <AvaloniaResource Remove="out\**" />
+    <Page Remove="out\**" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="Avalonia" />
-    <PackageReference Include="Avalonia.Controls.DataGrid" />
-    <PackageReference Include="Avalonia.Desktop" />
-    <PackageReference Include="Avalonia.Fonts.Inter" />
-    <PackageReference Include="Avalonia.Themes.Fluent" />
-    <PackageReference Include="CommunityToolkit.Mvvm" />
-    <PackageReference Include="Irihi.Ursa" />
-    <PackageReference Include="Irihi.Ursa.Themes.Semi" />
-    <PackageReference Include="Semi.Avalonia" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" />
-    <PackageReference Include="WeihanLi.Common" />
-    <PackageReference Include="WeihanLi.Extensions.Localization.Json" />
-    <PackageReference Include="WeihanLi.Npoi" />
-    <PackageReference Include="DbTool.Core" />
-    <PackageReference Include="DbTool.DbProvider.MySql" />
-    <PackageReference Include="DbTool.DbProvider.PostgreSql" />
-    <PackageReference Include="DbTool.DbProvider.SqlServer" />
+    <PackageReference Include="WeihanLi.Extensions.Localization.Json" Version="2.0.0" />
+    <PackageReference Include="WeihanLi.Common" Version="1.0.60" />
+    <PackageReference Include="WeihanLi.Npoi" Version="2.4.2" />
+    <PackageReference Include="DbTool.Core" Version="$(DbToolPackageVersion)" />
+    <PackageReference Include="DbTool.DbProvider.MySql" Version="$(DbToolPackageVersion)" />
+    <PackageReference Include="DbTool.DbProvider.PostgreSql" Version="$(DbToolPackageVersion)" />
+    <PackageReference Include="DbTool.DbProvider.SqlServer" Version="$(DbToolPackageVersion)" />
   </ItemGroup>
-
   <ItemGroup>
-    <None Update="App.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <ProjectReference Include="..\DbTool.ControlLib\DbTool.ControlLib.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <None Update="Resources\**\*.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
 </Project>

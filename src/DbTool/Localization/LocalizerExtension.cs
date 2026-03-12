@@ -1,25 +1,29 @@
-// Copyright (c) Weihan Li. All rights reserved.
+﻿// Copyright (c) Weihan Li. All rights reserved.
 // Licensed under the MIT license.
 
-using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.Localization;
 using System;
-using DbTool.Views;
+using System.Windows.Markup;
 using WeihanLi.Common;
 
 namespace DbTool.Localization;
 
-public class LocalizerExtension(string key) : MarkupExtension
+public class LocalizerExtension : MarkupExtension
 {
-    private readonly IStringLocalizer _localizer =
-        DependencyResolver.ResolveRequiredService<IStringLocalizerFactory>()
-            .Create(typeof(MainWindow));
+    private readonly IStringLocalizer _localizer;
+    public string Key { get; }
 
-    public string Key { get; } = key;
+    public LocalizerExtension(string key)
+    {
+        Key = key;
+        _localizer = DependencyResolver.
+            ResolveRequiredService<IStringLocalizerFactory>()
+            .Create(typeof(MainWindow));
+    }
 
     public override object ProvideValue(IServiceProvider serviceProvider)
     {
         var value = _localizer[Key];
-        return value.ResourceNotFound ? Key : value.Value ?? Key;
+        return (string)value;
     }
 }

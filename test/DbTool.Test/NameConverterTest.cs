@@ -1,13 +1,19 @@
 ﻿// Copyright (c) Weihan Li. All rights reserved.
 // Licensed under the MIT license.
 
+using DbTool.Core;
 using Xunit;
 
 namespace DbTool.Test;
 
 public class NameConverterTest
 {
-    private readonly ModelNameConverter _converter = new ModelNameConverter();
+    private readonly IModelNameConverter _converter;
+
+    public NameConverterTest()
+    {
+        _converter = new ModelNameConverter();
+    }
 
     [Theory]
     [InlineData("tabNotice", "Notice")]
